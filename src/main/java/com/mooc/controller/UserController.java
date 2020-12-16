@@ -5,44 +5,35 @@ package com.mooc.controller;
  * 2018.9.14
  * 591284209@qq.com
  */
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import com.mooc.biz.*;
+import com.mooc.entity.*;
+import com.mooc.util.DateUtil;
+import com.wf.captcha.utils.CaptchaUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.mooc.biz.CourseBiz;
-import com.mooc.biz.LogBiz;
-import com.mooc.biz.MessageBiz;
-import com.mooc.biz.ReviewBiz;
-import com.mooc.biz.UserBiz;
-import com.mooc.entity.*;
-import com.mooc.util.DateUtil;
-import com.wf.captcha.utils.CaptchaUtil;
-import org.springframework.web.servlet.ModelAndView;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.*;
 
 @Controller
 public class UserController {
 	@Autowired
-	UserBiz userBiz;
+    UserBiz userBiz;
 	@Autowired
-	CourseBiz courseBiz;
+    CourseBiz courseBiz;
 	@Autowired
-	MessageBiz messageBiz;
+    MessageBiz messageBiz;
 	@Autowired
-	ReviewBiz reviewBiz;
+    ReviewBiz reviewBiz;
 	@Autowired
-	LogBiz logBiz;
+    LogBiz logBiz;
 
 	/**
 	 * 普通日志写入
@@ -180,7 +171,7 @@ public class UserController {
 
 	@RequestMapping(value = "showvip")
 	// 会员中心
-	public ModelAndView showvip(HttpSession session,ModelAndView mav) {
+	public ModelAndView showvip(HttpSession session, ModelAndView mav) {
 		User loginUser = (User) session.getAttribute("loginUser");
 		if (loginUser != null) {
 			loginUser = userBiz.selectByPrimaryKey(loginUser.getId());
@@ -222,7 +213,7 @@ public class UserController {
 
 	@RequestMapping(value = "coursedetail")
 	// 单课程主页
-	public ModelAndView Courseindex(int id, HttpSession session,ModelAndView mav) {
+	public ModelAndView Courseindex(int id, HttpSession session, ModelAndView mav) {
 		User loginUser = (User) session.getAttribute("loginUser");
 		if (loginUser == null) {
 			mav.setViewName("login");
@@ -267,18 +258,25 @@ public class UserController {
 	@RequestMapping(value = "insertCourse")
 	// 加入课程
 	public void insertCourse(int courseid, String userid, HttpSession session, HttpServletRequest req,
-			HttpServletResponse response) throws IOException {
+                             HttpServletResponse response) throws IOException {
 		String result = "订阅成功！";
+		Date date = new Date();
 		User user = (User) session.getAttribute("loginUser");
 		Course c = courseBiz.selectByPrimaryKey(courseid);
-		if (user.getVip() == null && "1".equals(c.getType())) {
+		if (user.getVip() == null && "1".equals(c.getType())  ) {
 			result = "此课程是会员课程，请购买会员！";
+		}else if (user.getVip().compareTo(date) < 0 && "1".equals(c.getType())){   //会员到期
+			result="您的会员已到期，请续费会员";
 		} else {
 			Message message = new Message();
 			message.setCourseid(courseid);
 			message.setUserid(userid);
 			int i = messageBiz.insert(message);
 			setlog(user, req.getRemoteAddr(), "订阅课程:" + c.getName());
+			c.setHour(c.getHour()+1);                    //直接加1 做法
+//			int count = messageBiz.count(courseid);
+//			c.setHour(count);
+			courseBiz.updateByPrimaryKeySelective(c);
 		}
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
@@ -297,6 +295,8 @@ public class UserController {
 		User loginUser = userBiz.selectByPrimaryKey(userid);
 		Course c = courseBiz.selectByPrimaryKey(courseid);
 		setlog(loginUser, req.getRemoteAddr(), "取消课程：" + c.getName());
+		c.setHour(c.getHour()-1);
+		courseBiz.updateByPrimaryKeySelective(c);
 		String result = i > 0 ? "true" : "false";
 		return result;
 	}

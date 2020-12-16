@@ -13,7 +13,7 @@ public class Course {
 
     private String label;
 
-    private String hour;
+    private int hour;
 
     public int getId() {
         return id;
@@ -63,11 +63,11 @@ public class Course {
         this.label = label == null ? null : label.trim();
     }
 
-    public String getHour() {
+    public int getHour() {
         return hour;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour == null ? null : hour.trim();
+    public void setHour(int hour) {
+        this.hour = hour;
     }
 }
