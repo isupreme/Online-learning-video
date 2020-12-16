@@ -14,8 +14,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>mooc后台管理系统</title>
-</head><%-- 
+<title>后台管理系统</title>
+</head><%--
 <%@include file="leftmeun.jsp"%> --%>
 
 <body>
@@ -111,7 +111,7 @@ function nextpage(){
 	var page = ${page}+1;
 	if(page>maxpage){
 		alert("这是最后一页！");
-	}else{ 
+	}else{
 	window.location.href="logpage?page="+page;
     }
 	}

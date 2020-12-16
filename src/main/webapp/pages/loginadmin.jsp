@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="style/js/loginkuang.js"></script>
   <link rel="stylesheet" href="style/css/course.css">
-<link  rel="stylesheet" href="style/css/bootstrap.min.css"> 
+<link  rel="stylesheet" href="style/css/bootstrap.min.css">
 <script src="style/js/jquery.min.js"></script>
 <script src="style/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="style/css/11.css">
@@ -19,17 +19,17 @@
 
 	<div id="ui" style="text-align:center;">
 	<div class="user ">
-	<div class="logo" style="margin-bottom: 50px;margin-top: 50px;">
+	<div class="logo" style="margin-bottom: 20px;margin-top: 20px;">
 	<a href=#>
-	<img src="${pageContext.request.contextPath }/style/image/1.jpg" width="204px" class="img-rounded"></a>
+	<img src="${pageContext.request.contextPath }/style/image/11.png" style="margin-right: 20px; width: 204px" class="img-rounded"></a>
 	</div>
-	<h2>mooc管理员登录</h2>
+	<h2>管理员登录</h2>
 	<!-- uiView:  -->
 	<div data-ui-view="" class="container">
 
 
 	<div class="container-fluid full ">
-	<form id="login1" action="adminlogin" method="post" 
+	<form id="login1" action="adminlogin" method="post"
 						class="form col-md-4 col-md-offset-4 ">
 						<label for="username" class="col-md-3 control-label">用户名</label>
 						<div class="form-group" >
@@ -43,25 +43,25 @@
 						</div>
 						<label class="col-md-3 control-label"
 					for="varcode">验证码</label> <br><input class="form-control input-lg" id="varcode"
-					type="text" name="varcode" ><img onclick="changevarcode()" id="varcodeimg" alt="验证码" src="changevarcode"> <br>
-						
+					type="text" name="varcode" ><img onclick="changevarcode()" id="varcodeimg" alt="验证码" src="changevarcode" style="margin-top: 10px"> <br>
+
 						<div class="form-group" id ="email">
-							
+
 						</div>
 						<div class="form-group" id="phone">
-							
+
 					    </div>
 					    <div class="form-group" id="nickname">
-							
+
 					    </div>
 					    <div class="form-group" id="sex">
-							
+
 					    </div>
-					
+
 						<div class="form-group">
 							<div id="loginInfo"></div>
 						</div>
-						 
+
 						<div class="form-group">
 							<button id="submit1" class="btn btn-primary btn-lg btn-block"
 								type="button" onclick="validatePassword()">立刻登录</button>
@@ -69,7 +69,7 @@
 					</form>
 	</div>
 	</div>
-	
+
 	<div class="footer">
 	<a class="icon-ic_login_backhome" href="index">
 	返回首页</a>
@@ -78,8 +78,8 @@
 	</div>
 
 
-	
-	
+
+
 	<script type="text/javascript">
 		function validatePassword() {
 			var username = $("#username").val();
@@ -152,7 +152,7 @@
 								} else if(data == 1){
 									$("#loginInfo").html(
 									"<b style='color:red;font-size:15px;'>您不是管理员！</b>");
-							        $("#username").focus(); 
+							        $("#username").focus();
 							        changevarcode();
 							        isok = false;
 								}else {
@@ -172,7 +172,7 @@
 					return;
 				}
 			});
-			
+
 			if (isok) {
 				$("#login1").submit();
 			}
@@ -181,12 +181,12 @@
 			var src = "changevarcode?t="+new Date().getTime();
 			$("#varcodeimg").attr("src",src);
 		}
-			
+
 	</script>
-	
+
 	<footer style="text-align: center">
     <hr>
-<p class="am-padding-left">© 2018 <a href="#">山西农业大学北京海淀基地</a>. 作者:杨祺晖</p>
+<p class="am-padding-left">© 2020 <a href="#">第四小组研究院中心</a>. ~</p>
 </footer>
 
 

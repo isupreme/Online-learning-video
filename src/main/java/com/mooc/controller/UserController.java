@@ -1,17 +1,12 @@
 package com.mooc.controller;
 
-/**
- * 杨祺晖
- * 2018.9.14
- * 591284209@qq.com
- */
-
 import com.mooc.biz.*;
 import com.mooc.entity.*;
 import com.mooc.util.DateUtil;
 import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,7 +32,7 @@ public class UserController {
 
 	/**
 	 * 普通日志写入
-	 * 
+	 *
 	 * @param loginUser
 	 * @param ip
 	 * @param type
@@ -49,6 +44,11 @@ public class UserController {
 		log.setIp(ip);
 		log.setType(type);
 		logBiz.insert(log);
+	}
+
+	@GetMapping("/login")
+	public String toLogin(){
+		return "login";
 	}
 
 	@RequestMapping(value = "login")
@@ -94,7 +94,7 @@ public class UserController {
 		PrintWriter out = response.getWriter();
 		if (userBiz.selectUser(paramMap) == 1) {
 			user = userBiz.selectLoginUser(paramMap);
-			if (!"admin".equals(user.getMission())&&!"showadmin".equals(user.getMission())) {
+			if (!"admin".equals(user.getMission()) && !"showadmin".equals(user.getMission())) {
 				if (user.getBuycase() != null) {
 					if ("1".equals(user.getBuycase())) {
 						out.println("3");// 屏蔽登录
@@ -120,8 +120,12 @@ public class UserController {
 	public void Usercheck(String username, HttpSession session, HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
+//        System.out.println(userBiz.selectUser(username));
 		int i = userBiz.selectUser(username);
-		out.println(i);
+//        System.out.println(i);
+		if (i == 1){
+			out.write("1");
+		}
 	}
 
 	@RequestMapping(value = "quickregist")
@@ -137,6 +141,7 @@ public class UserController {
 			return mav;
 		}
 		user.setId(id);
+		user.setNickname("未命名");
 		user.setMission(null);
 		user.setBuycase(null);
 		user.setMycase(null);
@@ -147,25 +152,31 @@ public class UserController {
 		return mav;
 	}
 
+	@GetMapping("/regist")
+	public String toRegist(){
+		return "regist";
+	}
+
 	@RequestMapping(value = "regist")
 	// 注册
 	public ModelAndView regist(ModelAndView mav, String varcode, User user, HttpSession session, HttpServletRequest req) {
 		String id = DateUtil.getId();
 		String username = user.getUsername();
 		mav.setViewName("redirect:course");
-		if (varcode == null) {
-			return mav;
-		}
-		if (userBiz.selectUser(username) == 1 || !CaptchaUtil.ver(varcode, req)) {
-			return mav;
-		}
+
 		user.setId(id);
+		user.setUsername(username);
+		user.setPassword(user.getPassword());
+		user.setMail(user.getMail());
+		user.setPhone(user.getPhone());
+		user.setNickname("未命名");
 		user.setMission(null);
 		user.setBuycase(null);
 		user.setMycase(null);
 		user.setVip(null);
 		userBiz.insertSelective(user);
 		setlog(user, req.getRemoteAddr(), "普通注册");
+		session.setAttribute("loginUser", user);
 		return mav;
 	}
 
@@ -258,7 +269,7 @@ public class UserController {
 	@RequestMapping(value = "insertCourse")
 	// 加入课程
 	public void insertCourse(int courseid, String userid, HttpSession session, HttpServletRequest req,
-                             HttpServletResponse response) throws IOException {
+							 HttpServletResponse response) throws IOException {
 		String result = "订阅成功！";
 		Date date = new Date();
 		User user = (User) session.getAttribute("loginUser");
@@ -300,7 +311,7 @@ public class UserController {
 		String result = i > 0 ? "true" : "false";
 		return result;
 	}
-	
+
 	@RequestMapping(value = "info")
 	//个人信息页面
 	public String Info(User user, HttpSession session) {
@@ -325,7 +336,9 @@ public class UserController {
 		}
 		reviewBiz.updateByPrimaryKeySelective(reviews);
 
+		System.out.println(user);
 		userBiz.updateByPrimaryKeySelective(user);
+
 		Map map = new HashMap<String, String>();
 		map.put("username", loginUser.getUsername());
 		map.put("password", loginUser.getPassword());
@@ -349,10 +362,10 @@ public class UserController {
 		boolean isvip = false;
 		Date date = new Date();
 		Date vipdate = loginUser.getVip();
-		if (vipdate == null||vipdate.getTime() < date.getTime()) {
+		if (vipdate == null || vipdate.getTime() < date.getTime()) {
 			loginUser.setVip(new Date());
 		}
-		switch (viptype){
+		switch (viptype) {
 			default:
 				data = "请求错误！";
 				break;

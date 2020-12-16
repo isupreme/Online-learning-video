@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>mooc后台管理系统</title>
+<title>后台管理系统</title>
 <script src="style/js/adapter.js"></script> <!--rem适配js-->
 <script src="style/js/jquery-2.1.4.min.js"></script>
 <link rel="stylesheet" href="style/css/base.css"> <!--初始化文件-->
@@ -17,14 +17,14 @@
     <div id="ensconce">
         <h2>
             <img src="style/image/show.png" alt="">
-            mooc后台管理系统
+            后台管理系统
         </h2>
     </div>
 
     <!--显示菜单-->
     <div id="open">
         <div class="navH">
-            <a href="adminindex" target="rigt_main" style="color: white;font-size: 20px;">mooc后台管理系统</a>
+            <a href="adminindex" target="rigt_main" style="color: white;font-size: 20px;">后台管理系统</a>
             <span><img class="obscure" src="style/image/obscure.png" alt=""></span>
         </div>
         <div class="navBox">
@@ -60,7 +60,7 @@
                 </li>
             </ul>
 <div style="margin-top: 50px;text-align: center;">
-                        <h3><a href="logoutadmin" style="font-size: 15px;color: white;">退出mooc后台管理</a></h3>
+                        <h3><a href="logoutadmin" style="font-size: 15px;color: white;">退出后台管理系统</a></h3>
                     </div>
         </div>
     </div>

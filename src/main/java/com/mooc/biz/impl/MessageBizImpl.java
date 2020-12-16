@@ -1,18 +1,17 @@
 package com.mooc.biz.impl;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.mooc.biz.MessageBiz;
 import com.mooc.entity.Message;
 import com.mooc.mapper.MessageMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service(value="MessageBiz")
 public class MessageBizImpl implements MessageBiz {
 	@Autowired
-	MessageMapper messageMapper;
+    MessageMapper messageMapper;
 
 	@Override
 	public int delete(Message record) {
@@ -36,6 +35,11 @@ public class MessageBizImpl implements MessageBiz {
 	public List<Message> selectmy(String userid) {
 		// TODO Auto-generated method stub
 		return messageMapper.selectMy(userid);
+	}
+
+	@Override
+	public int deleteByCourseId(String courseId) {
+		return messageMapper.deleteByCourseId(courseId);
 	}
 
 }

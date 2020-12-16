@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>mooc后台管理系统</title>
+<title>后台管理系统</title>
 </head>
 <%-- <%@include file="leftmeun.jsp" %> --%>
 
@@ -46,13 +46,13 @@
 				</c:if>
 				 <c:forEach items = "${users }" var = "order">
 					 <c:if test="${order.username ne 'yangqihui'}">
-					
+
 					<tr>
 						<td class="col-md-2 text-center " >
 							${order.id }
 						</td>
 						<td class="col-md-2 text-center" style="">
-							${order.username } 
+							${order.username }
 						</td>
 						<td class="col-md-2 text-center">${order.nickname }</td>
 						<td class="col-md-2 text-center">
@@ -60,7 +60,7 @@
 						<c:when test="${order.mission eq 'admin' }">
 						-----
 						</c:when>
-						<c:otherwise> 
+						<c:otherwise>
 						${order.password }
 						</c:otherwise>
 						</c:choose>
@@ -79,7 +79,7 @@
 						<c:when test="${order.mission eq 'admin' }">
 						管理员
 						</c:when>
-						<c:otherwise> 
+						<c:otherwise>
 						-----------
 						</c:otherwise>
 						</c:choose>
@@ -121,8 +121,8 @@
 						 </td>
 					</tr>
 					 </c:if>
-					
-				 </c:forEach> 
+
+				 </c:forEach>
 			</table><center>
 <c:if test="${page!=0 }">
 			<button onclick="prevpage()">上一页</button>

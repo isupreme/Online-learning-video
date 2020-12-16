@@ -1,52 +1,42 @@
 package com.mooc.controller;
 
-import java.awt.FontFormatException;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.xml.crypto.Data;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.mooc.biz.*;
 import com.mooc.entity.Course;
 import com.mooc.entity.Log;
 import com.mooc.entity.Review;
 import com.mooc.entity.User;
 import com.mooc.util.DateUtil;
-import com.mooc.util.NubmerToJpgUtil;
-import com.mooc.util.UploadFile;
 import com.wf.captcha.GifCaptcha;
 import com.wf.captcha.utils.CaptchaUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MainController {
+
+	//dededeeded
 	@Autowired
-	UserBiz userBiz;
+    UserBiz userBiz;
 	@Autowired
-	CourseBiz courseBiz;
+    CourseBiz courseBiz;
 	@Autowired
-	ReviewBiz reviewBiz;
+    ReviewBiz reviewBiz;
 	@Autowired
-	MessageBiz messageBiz;
+    MessageBiz messageBiz;
 	@Autowired
-	LogBiz logBiz;
+    LogBiz logBiz;
 	public void setlog(User loginUser, String ip, String type) {
 		Log log = new Log();
 		log.setUserid(loginUser.getId());
@@ -106,7 +96,7 @@ public class MainController {
 
 	@RequestMapping(value = "subreview")
 	// 提交评论
-	public String subreview(HttpSession session, Review review,HttpServletRequest req) {
+	public String subreview(HttpSession session, Review review, HttpServletRequest req) {
 		User loginUser = (User) session.getAttribute("loginUser");
 		if (loginUser == null) {
 			return "login";
