@@ -43,8 +43,10 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img alt="" src="style/image/index/2.jpg" width="100%"
+                                <a href="coursedetail?id=7">
+                                <img alt="" src="/style/image/courses/7.jpg" width="100%"
                                      height="300px"/>
+                            </a>
                                 <div class="carousel-caption">
                                     <h4>
                                         <!-- First Thumbnail label -->
@@ -55,8 +57,10 @@
                                 </div>
                             </div>
                             <div class="item">
-                                <img alt="" src="style/image/index/1.jpg" width="100%"
-                                     height="300px"/>
+                                <a href="coursedetail?id=2">
+                                    <img alt="" src="/style/image/courses/2.jpg" width="100%"
+                                         height="300px"/>
+                                </a>
                                 <div class="carousel-caption">
                                     <h4>
                                         <!-- Second Thumbnail label -->
@@ -68,8 +72,10 @@
                                 </div>
                             </div>
                             <div class="item">
-                                <img alt="" src="style/image/index/3.jpg" width="100%"
-                                     height="300px"/>
+                                <a href="coursedetail?id=3">
+                                    <img alt="" src="/style/image/courses/3.jpg" width="100%"
+                                         height="300px"/>
+                                </a>
                                 <div class="carousel-caption">
                                     <h4>
                                         <!-- Third Thumbnail label -->

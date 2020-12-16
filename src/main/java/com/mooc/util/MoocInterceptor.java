@@ -14,7 +14,7 @@ import com.mooc.entity.Ipset;
 import com.mooc.mapper.IpsetMapper;
 /**
  * 过滤器，过滤封禁的IP
- * @author 杨祺晖
+ * @author
  *
  */
 public class MoocInterceptor implements HandlerInterceptor{

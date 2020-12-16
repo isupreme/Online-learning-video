@@ -5,7 +5,7 @@ import java.util.List;
 import com.mooc.entity.Course;
 /**
  * 
- * @author ccnoobs-杨祺晖
+ * @author ccnoobs-
  *
  */
 public interface CourseMapper {
