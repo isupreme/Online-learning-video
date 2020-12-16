@@ -37,6 +37,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
+
+	//dededeeded
 	@Autowired
 	UserBiz userBiz;
 	@Autowired
