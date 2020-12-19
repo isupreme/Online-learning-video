@@ -276,7 +276,7 @@ public class UserController {
 		Course c = courseBiz.selectByPrimaryKey(courseid);
 		if (user.getVip() == null && "1".equals(c.getType())  ) {
 			result = "此课程是会员课程，请购买会员！";
-		}else if (user.getVip().compareTo(date) < 0 && "1".equals(c.getType())){   //会员到期
+		}else if ( "1".equals(c.getType()) && user.getVip().compareTo(date) < 0 ){   //会员到期
 			result="您的会员已到期，请续费会员";
 		} else {
 			Message message = new Message();

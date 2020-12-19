@@ -41,24 +41,28 @@
                             <li data-slide-to="1" data-target="#carousel-624135"></li>
                             <li data-slide-to="2" data-target="#carousel-624135"></li>
                         </ol>
-                        <div class="carousel-inner">
+                        <div class="carousel-inner" style="position: relative">
                             <div class="item active">
-                                <a href="coursedetail?id=7">
-                                <img alt="" src="/style/image/courses/7.jpg" width="100%"
-                                     height="300px"/>
-                            </a>
-                                <div class="carousel-caption">
-                                    <h4>
-                                        <!-- First Thumbnail label -->
-                                    </h4>
-                                    <p>
-                                        <!-- Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. -->
-                                    </p>
+                                <div style="width: 101%">
+                                    <a href="coursedetail?id=2">
+                                        <img alt="" src="/style/image/index/1.jpg" width="200%"
+                                             height="300px"/>
+                                    </a>
+                                    <div class="carousel-caption">
+                                        <h4>
+                                            <!-- First Thumbnail label -->
+                                        </h4>
+                                        <p>
+                                            <!-- Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. -->
+                                        </p>
+                                    </div>
                                 </div>
+
                             </div>
                             <div class="item">
-                                <a href="coursedetail?id=2">
-                                    <img alt="" src="/style/image/courses/2.jpg" width="100%"
+                                <div style="width: 100%">
+                                <a href="coursedetail?id=7">
+                                    <img alt="" src="/style/image/index/2.jpg" width="200%"
                                          height="300px"/>
                                 </a>
                                 <div class="carousel-caption">
@@ -70,11 +74,13 @@
                                      -->
                                     </p>
                                 </div>
+                                </div>
                             </div>
                             <div class="item">
+                                <div style="width: 101%">
                                 <a href="coursedetail?id=3">
-                                    <img alt="" src="/style/image/courses/3.jpg" width="100%"
-                                         height="300px"/>
+                                    <img alt="" src="/style/image/index/3.jpg" width="200%"
+                                         height="300px" />
                                 </a>
                                 <div class="carousel-caption">
                                     <h4>
@@ -85,6 +91,7 @@
                                      -->
                                     </p>
                                 </div>
+                            </div>
                             </div>
                         </div>
                         <a class="left carousel-control" href="#carousel-624135"
@@ -208,7 +215,7 @@
                     </div>
                 </div>
             </div>
-            <img alt="140x140" src="style/image/index/11.jpg" style="margin-top: 50px;width: 1140px;"/>
+<%--            <img alt="140x140" src="style/image/index/11.jpg" style="margin-top: 50px;width: 1140px;"/>--%>
         </div>
     </div>
 </div>
