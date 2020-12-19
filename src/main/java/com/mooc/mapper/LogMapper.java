@@ -3,6 +3,7 @@ package com.mooc.mapper;
 import java.util.List;
 
 import com.mooc.entity.Log;
+import com.mooc.entity.Statistic;
 
 public interface LogMapper {
 	List<Log> select();
@@ -12,4 +13,5 @@ public interface LogMapper {
 	int insert(Log log);
 	int updateByPrimaryKeySelective(Log log);
 
+	List<Statistic> count();
 }

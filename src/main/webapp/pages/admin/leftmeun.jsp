@@ -49,6 +49,7 @@
                     <div class="secondary">
                         <h3><a href="showlog" target="rigt_main" style="color: white;font-size: 13px;">用户日志</a></h3>
                         <h3><a href="showlog?type=admin" target="rigt_main" style="color: white;font-size: 13px;">管理员操作日志</a></h3>
+                        <h3><a href="toS" target="rigt_main" style="color: white;font-size: 13px;">用户活跃度</a></h3>
                     </div>
                 </li>
                 <li>

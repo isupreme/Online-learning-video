@@ -2,6 +2,7 @@ package com.mooc.biz.impl;
 
 import java.util.List;
 
+import com.mooc.entity.Statistic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,10 @@ public class LogBizImpl implements LogBiz {
 	public List<Log> selectadminlogbyusername(String username) {
 		// TODO Auto-generated method stub
 		return logmapper.selectadminlogbyusername(username);
+	}
+	@Override
+	public List<Statistic> count() {
+		return logmapper.count();
 	}
 
 }

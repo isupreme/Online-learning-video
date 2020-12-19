@@ -1,14 +1,13 @@
 package com.mooc.controller;
 
 import com.mooc.biz.*;
-import com.mooc.entity.Course;
-import com.mooc.entity.Ipset;
-import com.mooc.entity.Log;
-import com.mooc.entity.User;
+import com.mooc.entity.*;
 import com.mooc.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -538,6 +537,18 @@ public class AdminController {
         session.setAttribute("msg", "操作成功");
         return "admin/course";
 
+    }
+
+    @GetMapping("/toS")
+    public String toS(){
+        return "admin/statistic";
+    }
+
+    @GetMapping(value = "statistic")
+    @ResponseBody
+    public List<Statistic> count(){
+        List<Statistic> list = logBiz.count();
+        return list;
     }
 
 }

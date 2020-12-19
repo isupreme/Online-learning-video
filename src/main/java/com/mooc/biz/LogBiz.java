@@ -3,6 +3,7 @@ package com.mooc.biz;
 import java.util.List;
 
 import com.mooc.entity.Log;
+import com.mooc.entity.Statistic;
 
 public interface LogBiz {
 	List<Log> select();
@@ -12,4 +13,5 @@ public interface LogBiz {
 	int insert(Log log);
 	int updateByPrimaryKeySelective(Log log);
 
+	List<Statistic> count();
 }

@@ -98,4 +98,27 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="count" resultType="com.mooc.entity.Statistic">
+  select a.click_date as date,IFNULL(b.count,0)as count
+  from (
+  SELECT curdate() as click_date
+  union all
+  SELECT date_sub(curdate(), interval 1 day) as click_date
+  union all
+  SELECT date_sub(curdate(), interval 2 day) as click_date
+  union all
+  SELECT date_sub(curdate(), interval 3 day) as click_date
+  union all
+  SELECT date_sub(curdate(), interval 4 day) as click_date
+  union all
+  SELECT date_sub(curdate(), interval 5 day) as click_date
+  union all
+  SELECT date_sub(curdate(), interval 6 day) as click_date
+  ) a left join (
+  select date(time) as datetime, count(*) as count
+  from log
+  group by date(time)
+  ) b on a.click_date = b.datetime;
+
+  </select>
 </mapper>

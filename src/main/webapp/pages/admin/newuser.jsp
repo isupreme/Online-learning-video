@@ -18,7 +18,7 @@
 </head><%-- 
 <%@include file="leftmeun.jsp" %> --%>
 <body>
-<div class="container-fluid full " style="float: left;width: 1500px;height: 2000px;margin-top: 100px;">
+<div class="container-fluid full " style="float: left;width: 100%;height: 100%;margin-top: 100px;">
 							<c:if test="${user!=null }">
 					<form action="setuser"
 						class="form-horizontal col-md-9 col-md-offset-2 " role="form"
